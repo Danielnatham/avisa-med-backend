@@ -84,11 +84,11 @@ public class UsuarioDTO implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getSenha() {
+    public String getPassword() {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public void setPassword(String senha) {
         this.senha = senha;
     }
 
@@ -123,7 +123,7 @@ public class UsuarioDTO implements Serializable {
             ", dataNascimento='" + getDataNascimento() + "'" +
             ", email='" + getEmail() + "'" +
             ", cpf='" + getCpf() + "'" +
-            ", senha='" + getSenha() + "'" +
+            ", senha='" + getPassword() + "'" +
             "}";
     }
 }

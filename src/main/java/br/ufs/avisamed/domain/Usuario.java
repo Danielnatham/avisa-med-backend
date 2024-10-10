@@ -139,16 +139,16 @@ public class Usuario implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getSenha() {
+    public String getPassword() {
         return this.senha;
     }
 
     public Usuario senha(String senha) {
-        this.setSenha(senha);
+        this.setPassword(senha);
         return this;
     }
 
-    public void setSenha(String senha) {
+    public void setPassword(String senha) {
         this.senha = senha;
     }
 
@@ -219,7 +219,7 @@ public class Usuario implements Serializable {
             ", dataNascimento='" + getDataNascimento() + "'" +
             ", email='" + getEmail() + "'" +
             ", cpf='" + getCpf() + "'" +
-            ", senha='" + getSenha() + "'" +
+            ", senha='" + getPassword() + "'" +
             "}";
     }
 }

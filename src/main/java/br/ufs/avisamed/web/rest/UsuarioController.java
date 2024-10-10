@@ -43,7 +43,6 @@ public class UsuarioController {
             "firstName",
             "lastName",
             "email",
-            "activated",
             "langKey",
             "createdBy",
             "createdDate",

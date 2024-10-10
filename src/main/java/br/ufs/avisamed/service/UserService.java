@@ -62,7 +62,7 @@ public class UserService {
             .findOneByResetKey(key)
             .filter(user -> user.getResetDate().isAfter(Instant.now().minus(1, ChronoUnit.DAYS)))
             .map(user -> {
-                user.setSenha(passwordEncoder.encode(newPassword));
+                user.setPassword(passwordEncoder.encode(newPassword));
                 user.setResetKey(null);
                 user.setResetDate(null);
                 return user;
@@ -99,7 +99,7 @@ public class UserService {
         User newUser = new User();
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setEmail(userDTO.getLogin().toLowerCase());
-        newUser.setSenha(encryptedPassword);
+        newUser.setPassword(encryptedPassword);
         if (userDTO.getEmail() != null) {
             newUser.setEmail(userDTO.getEmail().toLowerCase());
         }
@@ -126,7 +126,7 @@ public class UserService {
         }
 
         String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
-        user.setSenha(encryptedPassword);
+        user.setPassword(encryptedPassword);
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
         if (userDTO.getAuthorities() != null) {
@@ -210,12 +210,12 @@ public class UserService {
         SecurityUtils.getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
             .ifPresent(user -> {
-                String currentEncryptedPassword = user.getSenha();
+                String currentEncryptedPassword = user.getPassword();
                 if (!passwordEncoder.matches(currentClearTextPassword, currentEncryptedPassword)) {
                     throw new InvalidPasswordException();
                 }
                 String encryptedPassword = passwordEncoder.encode(newPassword);
-                user.setSenha(encryptedPassword);
+                user.setPassword(encryptedPassword);
                 log.debug("Changed password for User: {}", user);
             });
     }
